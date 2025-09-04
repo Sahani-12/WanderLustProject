@@ -21,7 +21,6 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
-
 const dbUrl = process.env.ATLASDB_URL;
 
 main()
@@ -45,7 +44,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 
 const store = MongoStore.create({
   mongoUrl: dbUrl,
-  cryptoUrl: { secret: process.env.SECRET ||},
+  cryptoUrl: { secret: process.env.SECRET },
   touchAfter: 24 * 60 * 60,
 });
 
@@ -55,7 +54,7 @@ store.on("error", function (err) {
 
 const sessionOptions = {
   store: store,
-  secret: process.env.SECRET ,
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: {
